@@ -390,12 +390,25 @@ public static class OpenCliParser
         }
         """;
 
-    public static async Task<OpenCliParseResult> Parse(string json)
+    public static async Task<OpenCliParseResult> Parse(
+        string json,
+        CancellationToken cancellationToken = default)
     {
+        await using var stream = json.ToStream();
+        return await Parse(stream, cancellationToken);
+    }
+
+    public static async Task<OpenCliParseResult> Parse(
+        Stream stream,
+        CancellationToken cancellationToken = default)
+    {
+        using var reader = new StreamReader(stream);
+        var json = await reader.ReadToEndAsync(cancellationToken);
+
         var diagnostics = new Diagnostics();
 
         // Validate the schema
-        var validationResult = await ValidateSchema(json);
+        var validationResult = await ValidateSchema(json, cancellationToken);
         if (validationResult != null)
         {
             foreach (var error in validationResult)
@@ -435,7 +448,7 @@ public static class OpenCliParser
         }
 
         // Parse the JSON
-        var jsonDocument = ParseJsonModel(json, ref diagnostics);
+        var jsonDocument = ParseJsonModel(json, diagnostics);
         if (jsonDocument == null)
         {
             return new OpenCliParseResult
@@ -455,11 +468,13 @@ public static class OpenCliParser
         };
     }
 
-    private static async Task<ICollection<ValidationError>?> ValidateSchema(string json)
+    private static async Task<ICollection<ValidationError>?> ValidateSchema(
+        string json,
+        CancellationToken cancellationToken)
     {
         try
         {
-            var schema = await JsonSchema.FromJsonAsync(Schema);
+            var schema = await JsonSchema.FromJsonAsync(Schema, cancellationToken);
             return schema.Validate(json);
         }
         catch
@@ -468,7 +483,7 @@ public static class OpenCliParser
         }
     }
 
-    private static JsonModel.DocumentJson? ParseJsonModel(string json, ref Diagnostics diagnostics)
+    private static JsonModel.DocumentJson? ParseJsonModel(string json, Diagnostics diagnostics)
     {
         try
         {
