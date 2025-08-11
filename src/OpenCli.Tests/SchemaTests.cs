@@ -10,7 +10,7 @@ public class SchemaTests
 
         // Then
         result.Diagnostics.HasErrors.ShouldBeTrue();
-        result.Diagnostics[0].Code.ShouldBe("OPENCLI0001");
+        result.Diagnostics[0].Code.ShouldBe("OPENCLI-0001");
     }
 
     [Fact]
