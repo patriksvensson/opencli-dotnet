@@ -3,7 +3,18 @@ namespace OpenCli.Tests;
 public class SchemaTests
 {
     [Fact]
-    public async Task Should_Create_Diagnostics_For_Schema_Mismatch()
+    public async Task Should_Create_Error_Diagnostics_For_Invalid_Json()
+    {
+        // Given, When
+        var result = await OpenCliParser.Parse("This is not valid JSON");
+
+        // Then
+        result.Diagnostics.HasErrors.ShouldBeTrue();
+        result.Diagnostics[0].Code.ShouldBe("OPENCLI0001");
+    }
+
+    [Fact]
+    public async Task Should_Create_Error_Diagnostics_For_Schema_Mismatch()
     {
         // Given, When
         var result = await OpenCliParser.Parse(

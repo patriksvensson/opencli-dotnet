@@ -1,5 +1,6 @@
 namespace OpenCli;
 
+[PublicAPI]
 public sealed class OpenCliConventions
 {
     public bool? GroupOptions { get; set; }

@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NJsonSchema" />
+    <PackageReference Include="NJsonSchema" PrivateAssets="compile" />
   </ItemGroup>
 
 </Project>

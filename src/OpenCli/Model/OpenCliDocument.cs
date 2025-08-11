@@ -1,7 +1,6 @@
-using OpenCli.Internal;
-
 namespace OpenCli;
 
+[PublicAPI]
 public sealed class OpenCliDocument
 {
     public required string OpenCli { get; init; }

@@ -1,11 +1,11 @@
 using System.Text.Json;
 using NJsonSchema;
 using NJsonSchema.Validation;
-using OpenCli;
 using OpenCli.Internal;
 
 namespace OpenCli;
 
+[PublicAPI]
 public static class OpenCliParser
 {
     private const string Schema =
@@ -395,42 +395,77 @@ public static class OpenCliParser
         var diagnostics = new Diagnostics();
 
         // Validate the schema
-        var schema = await JsonSchema.FromJsonAsync(Schema);
-        var result = schema.Validate(json);
-        foreach (var error in result)
+        var validationResult = await ValidateSchema(json);
+        if (validationResult != null)
         {
-            if (error.HasLineInfo)
+            foreach (var error in validationResult)
             {
-                diagnostics.Add(
-                    new Location { Row = error.LineNumber, Column = error.LinePosition, },
-                    ParseErrors.SchemaError(error.ToString()));
-            }
-            else
-            {
-                diagnostics.Add(
-                    ParseErrors.SchemaError(error.ToString()));
+                if (error.HasLineInfo)
+                {
+                    diagnostics.Add(
+                        new Location
+                        {
+                            Row = error.LineNumber,
+                            Column = error.LinePosition,
+                        },
+                        ParseErrors.SchemaError(error.ToString()));
+                }
+                else
+                {
+                    diagnostics.Add(
+                        ParseErrors.SchemaError(error.ToString()));
+                }
             }
         }
+        else
+        {
+            diagnostics.Add(
+                ParseErrors.InvalidJson());
+        }
 
-        // Has errors? That means that we cannot create the result
+        // If there are errors, abort parsing. There might be problems
+        // with parsing JSON or other problems.
         if (diagnostics.HasErrors)
         {
-            return new OpenCliParseResult { Document = null, Diagnostics = diagnostics, };
+            return new OpenCliParseResult
+            {
+                Document = null,
+                Diagnostics = diagnostics,
+            };
         }
 
         // Parse the JSON
         var jsonDocument = ParseJsonModel(json, ref diagnostics);
-
-        // Has errors? That means that we cannot create the result
         if (jsonDocument == null)
         {
-            return new OpenCliParseResult { Document = null, Diagnostics = diagnostics, };
+            return new OpenCliParseResult
+            {
+                Document = null,
+                Diagnostics = diagnostics,
+            };
         }
 
         // Map the JSON document
         var document = JsonModelMapper.Map(jsonDocument);
 
-        return new OpenCliParseResult { Document = document, Diagnostics = diagnostics, };
+        return new OpenCliParseResult
+        {
+            Document = document,
+            Diagnostics = diagnostics,
+        };
+    }
+
+    private static async Task<ICollection<ValidationError>?> ValidateSchema(string json)
+    {
+        try
+        {
+            var schema = await JsonSchema.FromJsonAsync(Schema);
+            return schema.Validate(json);
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private static JsonModel.DocumentJson? ParseJsonModel(string json, ref Diagnostics diagnostics)
@@ -441,7 +476,10 @@ public static class OpenCliParser
 #pragma warning disable IL3050
             // TODO: Remove pragma
             var jsonDocument = JsonSerializer.Deserialize<JsonModel.DocumentJson>(
-                json, new JsonSerializerOptions { AllowTrailingCommas = true, });
+                json, new JsonSerializerOptions
+                {
+                    AllowTrailingCommas = true,
+                });
 #pragma warning restore IL3050
 #pragma warning restore IL2026
             return jsonDocument;

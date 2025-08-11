@@ -1,5 +1,6 @@
 namespace OpenCli;
 
+[PublicAPI]
 public sealed class OpenCliMetadata
 {
     public string? Name { get; set; }

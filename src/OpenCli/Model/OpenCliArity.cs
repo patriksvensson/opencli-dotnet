@@ -1,5 +1,6 @@
 namespace OpenCli;
 
+[PublicAPI]
 public sealed class OpenCliArity
 {
     public int? Minimum { get; set; }

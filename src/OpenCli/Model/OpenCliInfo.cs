@@ -1,5 +1,6 @@
 namespace OpenCli;
 
+[PublicAPI]
 public sealed class OpenCliInfo
 {
     public required string Title { get; init; }
