@@ -1,6 +1,6 @@
 namespace OpenCli.Tests;
 
-public class SchemaTests
+public class OpenCliParserTests
 {
     [Fact]
     public async Task Should_Create_Error_Diagnostics_For_Invalid_Json()
