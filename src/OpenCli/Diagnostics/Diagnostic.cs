@@ -1,4 +1,4 @@
-namespace OpenCli;
+namespace OpenCli.Diagnostics;
 
 [PublicAPI]
 public sealed class Diagnostic

@@ -2,7 +2,6 @@ using System.Text.Json.Serialization;
 
 namespace OpenCli.Internal;
 
-[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 internal static class JsonModel
 {
     public sealed class DocumentJson
@@ -32,7 +31,7 @@ internal static class JsonModel
         public List<string>? Examples { get; set; }
 
         [JsonPropertyName("interactive")]
-        public bool Interactive { get; set; }
+        public bool? Interactive { get; set; }
 
         [JsonPropertyName("metadata")]
         public List<MetadataJson>? Metadata { get; set; }

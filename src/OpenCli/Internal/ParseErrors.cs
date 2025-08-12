@@ -1,4 +1,6 @@
-namespace OpenCli;
+using OpenCli.Diagnostics;
+
+namespace OpenCli.Internal;
 
 internal sealed class ParseErrors
 {

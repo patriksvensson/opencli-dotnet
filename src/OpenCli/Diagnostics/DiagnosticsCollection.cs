@@ -1,15 +1,15 @@
-namespace OpenCli;
+namespace OpenCli.Diagnostics;
 
 [PublicAPI]
-public sealed class Diagnostics : List<Diagnostic>
+public sealed class DiagnosticsCollection : List<Diagnostic>
 {
     public bool HasErrors => this.Any(x => x.Severity == Severity.Error);
 
-    public Diagnostics()
+    public DiagnosticsCollection()
     {
     }
 
-    public Diagnostics(IEnumerable<Diagnostic> diagnostics)
+    public DiagnosticsCollection(IEnumerable<Diagnostic> diagnostics)
         : base(diagnostics)
     {
     }
@@ -28,10 +28,10 @@ public sealed class Diagnostics : List<Diagnostic>
         return diagnostic;
     }
 
-    public Diagnostics Merge(Diagnostics? other)
+    public DiagnosticsCollection Merge(DiagnosticsCollection? other)
     {
         return other == null
             ? this
-            : new Diagnostics(this.Concat(other));
+            : new DiagnosticsCollection(this.Concat(other));
     }
 }

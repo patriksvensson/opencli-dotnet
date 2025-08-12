@@ -6,10 +6,10 @@ public class SchemaTests
     public async Task Should_Create_Error_Diagnostics_For_Invalid_Json()
     {
         // Given, When
-        var result = await OpenCliParser.Parse("This is not valid JSON");
+        var result = await OpenCliDocument.Parse("This is not valid JSON");
 
         // Then
-        result.Diagnostics.HasErrors.ShouldBeTrue();
+        result.HasErrors.ShouldBeTrue();
         result.Diagnostics[0].Code.ShouldBe("OPENCLI-0001");
     }
 
@@ -17,7 +17,7 @@ public class SchemaTests
     public async Task Should_Create_Error_Diagnostics_For_Schema_Mismatch()
     {
         // Given, When
-        var result = await OpenCliParser.Parse(
+        var result = await OpenCliDocument.Parse(
             """
             {
                 "$schema": "../schema.json",
@@ -89,7 +89,7 @@ public class SchemaTests
     public async Task Should_Parse_Valid_Description()
     {
         // Given, When
-        var result = await OpenCliParser.Parse(
+        var result = await OpenCliDocument.Parse(
             """
             {
                 "$schema": "../schema.json",

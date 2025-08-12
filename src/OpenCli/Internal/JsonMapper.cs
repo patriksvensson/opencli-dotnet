@@ -1,6 +1,6 @@
 namespace OpenCli.Internal;
 
-internal static class JsonModelMapper
+internal static class JsonMapper
 {
     public static OpenCliDocument Map(JsonModel.DocumentJson json)
     {
@@ -39,35 +39,57 @@ internal static class JsonModelMapper
 
     private static OpenCliArity MapArity(JsonModel.ArityJson json)
     {
-        return new OpenCliArity { Minimum = json.Minimum, Maximum = json.Maximum, };
+        return new OpenCliArity
+        {
+            Minimum = json.Minimum,
+            Maximum = json.Maximum,
+        };
     }
 
     private static OpenCliContact MapContact(JsonModel.ContactJson json)
     {
-        return new OpenCliContact { Name = json.Name, Url = json.Url, Email = json.Email, };
+        return new OpenCliContact
+        {
+            Name = json.Name,
+            Url = json.Url,
+            Email = json.Email,
+        };
     }
 
     private static OpenCliLicense MapLicense(JsonModel.LicenseJson json)
     {
-        return new OpenCliLicense { Name = json.Name, Identifier = json.Identifier, };
+        return new OpenCliLicense
+        {
+            Name = json.Name,
+            Identifier = json.Identifier,
+        };
     }
 
     private static OpenCliConventions MapConventions(JsonModel.ConventionsJson json)
     {
         return new OpenCliConventions
         {
-            GroupOptions = json.GroupOptions, OptionArgumentSeparator = json.OptionArgumentSeparator,
+            GroupOptions = json.GroupOptions,
+            OptionArgumentSeparator = json.OptionArgumentSeparator,
         };
     }
 
     private static OpenCliExitCode MapExitCode(JsonModel.ExitCodeJson json)
     {
-        return new OpenCliExitCode { Code = json.Code, Description = json.Description, };
+        return new OpenCliExitCode
+        {
+            Code = json.Code,
+            Description = json.Description,
+        };
     }
 
     private static OpenCliMetadata MapMetadata(JsonModel.MetadataJson json)
     {
-        return new OpenCliMetadata { Name = json.Name, Value = json.Value, };
+        return new OpenCliMetadata
+        {
+            Name = json.Name,
+            Value = json.Value,
+        };
     }
 
     private static OpenCliCommand MapCommand(JsonModel.CommandJson json)

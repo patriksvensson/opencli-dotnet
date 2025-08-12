@@ -1,12 +1,12 @@
 using System.Text.Json;
 using NJsonSchema;
 using NJsonSchema.Validation;
+using OpenCli.Diagnostics;
 using OpenCli.Internal;
 
 namespace OpenCli;
 
-[PublicAPI]
-public static class OpenCliParser
+internal static class OpenCliParser
 {
     private const string Schema =
         """
@@ -405,7 +405,7 @@ public static class OpenCliParser
         using var reader = new StreamReader(stream);
         var json = await reader.ReadToEndAsync(cancellationToken);
 
-        var diagnostics = new Diagnostics();
+        var diagnostics = new DiagnosticsCollection();
 
         // Validate the schema
         var validationResult = await ValidateSchema(json, cancellationToken);
@@ -459,7 +459,7 @@ public static class OpenCliParser
         }
 
         // Map the JSON document
-        var document = JsonModelMapper.Map(jsonDocument);
+        var document = JsonMapper.Map(jsonDocument);
 
         return new OpenCliParseResult
         {
@@ -483,7 +483,7 @@ public static class OpenCliParser
         }
     }
 
-    private static JsonModel.DocumentJson? ParseJsonModel(string json, Diagnostics diagnostics)
+    private static JsonModel.DocumentJson? ParseJsonModel(string json, DiagnosticsCollection diagnostics)
     {
         try
         {
