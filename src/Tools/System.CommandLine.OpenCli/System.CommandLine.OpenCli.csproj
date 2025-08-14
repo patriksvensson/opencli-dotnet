@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <PackageId>System.CommandLine.Extensions.OpenCli</PackageId>
+    <RootNamespace>System.CommandLine.OpenCli</RootNamespace>
+    <NoWarn>$(NoWarn);NU5104</NoWarn>
+    <Description>OpenCLI integration for System.CommandLine</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\stylecop.json" Link="Properties/stylecop.json" />
+    <Additionalfiles Include="Properties/BannedSymbols.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\OpenCli\OpenCli.csproj" PrivateAssets="compile" />
+  </ItemGroup>
+
+</Project>

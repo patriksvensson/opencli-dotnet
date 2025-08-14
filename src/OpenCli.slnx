@@ -11,6 +11,20 @@
     <File Path=".editorconfig" />
     <File Path="stylecop.json" />
   </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="Tools\System.CommandLine.OpenCli.Tests\System.CommandLine.OpenCli.Tests.csproj" Type="Classic C#">
+      <Configuration Solution="Debug|x64" Project="Debug|Any CPU" />
+      <Configuration Solution="Debug|x86" Project="Debug|Any CPU" />
+      <Configuration Solution="Release|x64" Project="Release|Any CPU" />
+      <Configuration Solution="Release|x86" Project="Release|Any CPU" />
+    </Project>
+    <Project Path="Tools\System.CommandLine.OpenCli\System.CommandLine.OpenCli.csproj" Type="Classic C#">
+      <Configuration Solution="Debug|x64" Project="Debug|Any CPU" />
+      <Configuration Solution="Debug|x86" Project="Debug|Any CPU" />
+      <Configuration Solution="Release|x64" Project="Release|Any CPU" />
+      <Configuration Solution="Release|x86" Project="Release|Any CPU" />
+    </Project>
+  </Folder>
   <Project Path="OpenCli.Tests\OpenCli.Tests.csproj" />
   <Project Path="OpenCli\OpenCli.csproj" />
 </Solution>
