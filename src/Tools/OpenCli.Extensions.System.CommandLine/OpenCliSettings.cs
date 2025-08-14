@@ -1,4 +1,4 @@
-namespace System.CommandLine.OpenCli;
+namespace System.CommandLine;
 
 [PublicAPI]
 public class OpenCliSettings

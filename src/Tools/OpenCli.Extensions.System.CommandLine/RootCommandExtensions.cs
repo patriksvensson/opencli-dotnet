@@ -1,4 +1,6 @@
-namespace System.CommandLine.OpenCli;
+using System.CommandLine.OpenCli;
+
+namespace System.CommandLine;
 
 [PublicAPI]
 public static class CommandExtensions

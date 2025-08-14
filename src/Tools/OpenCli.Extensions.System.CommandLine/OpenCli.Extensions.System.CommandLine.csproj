@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <IsPackable>true</IsPackable>
-    <PackageId>System.CommandLine.Extensions.OpenCli</PackageId>
+    <PackageId>OpenCli.Extensions.System.CommandLine</PackageId>
     <RootNamespace>System.CommandLine.OpenCli</RootNamespace>
     <NoWarn>$(NoWarn);NU5104</NoWarn>
     <Description>OpenCLI integration for System.CommandLine</Description>
