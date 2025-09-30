@@ -59,6 +59,7 @@ Task("Publish-NuGet")
         context.Information("Publishing {0}...", file.GetFilename().FullPath);
         DotNetNuGetPush(file.FullPath, new DotNetNuGetPushSettings
         {
+            IgnoreSymbols = true,
             Source = "https://api.nuget.org/v3/index.json",
             ApiKey = apiKey,
         });
