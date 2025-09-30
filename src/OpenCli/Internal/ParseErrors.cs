@@ -1,3 +1,9 @@
+#if OPENCLI
+#pragma warning restore
+#else
+#pragma warning disable
+#endif
+
 using OpenCli.Diagnostics;
 
 namespace OpenCli.Internal;

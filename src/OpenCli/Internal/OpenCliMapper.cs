@@ -1,3 +1,9 @@
+#if OPENCLI
+#pragma warning restore
+#else
+#pragma warning disable
+#endif
+
 namespace OpenCli.Internal;
 
 internal static class OpenCliMapper
