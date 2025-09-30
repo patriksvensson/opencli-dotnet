@@ -9,8 +9,10 @@ public sealed class OpenCliFixture(Action<RootCommand> config)
         string[]? args = null,
         OpenCliSettings? settings = null)
     {
+        // Create root command
         var command = new RootCommand();
         command.AddOpenCli(settings);
+
         _config(command);
 
         // Parse

@@ -28,15 +28,16 @@ Task("Test")
 
 Task("Package")
     .IsDependentOn("Test")
-    .Does(context => 
+    .Does(context =>
 {
     context.CleanDirectory("./.artifacts");
-
+    
     context.DotNetPack($"./src/OpenCli.slnx", new DotNetPackSettings {
         Configuration = configuration,
         NoRestore = true,
         NoBuild = true,
         OutputDirectory = "./.artifacts",
+        IncludeSource = true,
         MSBuildSettings = new DotNetMSBuildSettings()
             .TreatAllWarningsAs(MSBuildTreatAllWarningsAs.Error)
     });
