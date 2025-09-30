@@ -1,15 +1,26 @@
+#if OPENCLI
+#pragma warning restore
+#else
+#pragma warning disable
+#endif
+
 namespace OpenCli.Diagnostics;
 
 [PublicAPI]
-public sealed class Diagnostic
+#if OPENCLI_VISIBILITY_INTERNAL
+internal
+#else
+public
+#endif
+    sealed class OpenCliDiagnostic
 {
     public string? Code { get; init; }
     public string Summary { get; }
     public string Message { get; }
-    public Severity Severity { get; }
-    public Location? Location { get; init; }
+    public OpenCliSeverity Severity { get; }
+    public OpenCliLocation? Location { get; init; }
 
-    internal Diagnostic(Severity severity, string summary, string message)
+    internal OpenCliDiagnostic(OpenCliSeverity severity, string summary, string message)
     {
         Severity = severity;
         Summary = summary ?? throw new ArgumentNullException(nameof(summary));

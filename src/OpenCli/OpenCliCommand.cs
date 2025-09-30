@@ -1,7 +1,18 @@
+#if OPENCLI
+#pragma warning restore
+#else
+#pragma warning disable
+#endif
+
 namespace OpenCli;
 
 [PublicAPI]
-public sealed class OpenCliCommand
+#if OPENCLI_VISIBILITY_INTERNAL
+internal
+#else
+public
+#endif
+sealed class OpenCliCommand
 {
     public required string Name { get; init; }
     public List<string> Aliases { get; set; } = [];

@@ -1,9 +1,20 @@
+#if OPENCLI
+#pragma warning restore
+#else
+#pragma warning disable
+#endif
+
 using OpenCli.Internal;
 
 namespace OpenCli;
 
 [PublicAPI]
-public sealed class OpenCliDocument
+#if OPENCLI_VISIBILITY_INTERNAL
+internal
+#else
+public
+#endif
+sealed class OpenCliDocument
 {
     public required string OpenCli { get; init; }
     public required OpenCliInfo Info { get; init; }

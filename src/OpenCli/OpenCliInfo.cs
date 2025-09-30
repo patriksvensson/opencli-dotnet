@@ -1,7 +1,18 @@
+#if OPENCLI
+#pragma warning restore
+#else
+#pragma warning disable
+#endif
+
 namespace OpenCli;
 
 [PublicAPI]
-public sealed class OpenCliInfo
+#if OPENCLI_VISIBILITY_INTERNAL
+internal
+#else
+public
+#endif
+sealed class OpenCliInfo
 {
     public required string Title { get; init; }
     public string? Summary { get; set; }

@@ -7,12 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\stylecop.json" Link="Properties/stylecop.json" />
-    <AdditionalFiles Include="..\BannedSymbols.txt" Link="Properties/BannedSymbols.txt" />
+    <AdditionalFiles Include="..\stylecop.json" Link="Properties/stylecop.json"/>
+    <AdditionalFiles Include="..\BannedSymbols.txt" Link="Properties/BannedSymbols.txt"/>
   </ItemGroup>
 
+  <PropertyGroup>
+    <!-- Define the OPENCLI constant to enable warnings -->
+    <DefineConstants>$(DefineConstants)OPENCLI</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="NJsonSchema" PrivateAssets="compile" />
+    <PackageReference Include="NJsonSchema" PrivateAssets="compile"/>
   </ItemGroup>
 
 </Project>

@@ -12,8 +12,9 @@ internal
 #else
 public
 #endif
-sealed class OpenCliExitCode
+enum OpenCliSeverity
 {
-    public int? Code { get; set; }
-    public string? Description { get; set; }
+    Information = 0,
+    Warning = 1,
+    Error = 2,
 }

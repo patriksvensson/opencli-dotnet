@@ -12,8 +12,8 @@ internal
 #else
 public
 #endif
-sealed class OpenCliExitCode
+    readonly struct OpenCliLocation
 {
-    public int? Code { get; set; }
-    public string? Description { get; set; }
+    public int Row { get; init; }
+    public int Column { get; init; }
 }

@@ -405,7 +405,7 @@ internal static class OpenCliParser
         using var reader = new StreamReader(stream);
         var json = await reader.ReadToEndAsync(cancellationToken);
 
-        var diagnostics = new DiagnosticsCollection();
+        var diagnostics = new OpenCliDiagnosticsCollection();
 
         // Validate the schema
         var validationResult = await ValidateSchema(json, cancellationToken);
@@ -416,7 +416,7 @@ internal static class OpenCliParser
                 if (error.HasLineInfo)
                 {
                     diagnostics.Add(
-                        new Location
+                        new OpenCliLocation
                         {
                             Row = error.LineNumber,
                             Column = error.LinePosition,
@@ -483,7 +483,7 @@ internal static class OpenCliParser
         }
     }
 
-    private static JsonModel.DocumentJson? ParseJsonModel(string json, DiagnosticsCollection diagnostics)
+    private static JsonModel.DocumentJson? ParseJsonModel(string json, OpenCliDiagnosticsCollection diagnostics)
     {
         try
         {
