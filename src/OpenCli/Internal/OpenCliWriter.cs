@@ -19,7 +19,11 @@ internal static class OpenCliWriter
 
     public static string Write(OpenCliDocument document)
     {
-        ArgumentNullException.ThrowIfNull(document);
+        if (document == null)
+        {
+            throw new ArgumentNullException(nameof(document));
+        }
+
         return JsonSerializer.Serialize(
             OpenCliMapper.Map(document),
             _options);
@@ -27,7 +31,11 @@ internal static class OpenCliWriter
 
     public static void Write(Stream stream, OpenCliDocument document)
     {
-        ArgumentNullException.ThrowIfNull(document);
+        if (document == null)
+        {
+            throw new ArgumentNullException(nameof(document));
+        }
+
         JsonSerializer.Serialize(
             stream,
             OpenCliMapper.Map(document),

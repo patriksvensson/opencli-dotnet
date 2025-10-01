@@ -34,7 +34,7 @@ internal sealed class OpenCliGenerator
             result.Add(new OpenCliCommand
             {
                 Name = command.Name,
-                Aliases = [..command.Aliases.Order(),],
+                Aliases = [..command.Aliases.OrderBy(str => str)],
                 Commands = CreateCommands(command.Subcommands),
                 Arguments = CreateArguments(command.Arguments),
                 Options = CreateOptions(command.Options),
@@ -133,7 +133,7 @@ internal sealed class OpenCliGenerator
             {
                 Name = option.Name,
                 Required = option.Required ? true : null,
-                Aliases = [..option.Aliases.Order(),],
+                Aliases = [..option.Aliases.OrderBy(str => str),],
                 Arguments = arguments,
                 Description = option.Description,
                 Group = null,

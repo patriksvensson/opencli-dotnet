@@ -400,7 +400,12 @@ internal static class OpenCliParser
         string json,
         CancellationToken cancellationToken = default)
     {
+        #if NETSTANDARD2_0
+        using var stream = json.ToStream();
+        #else
         await using var stream = json.ToStream();
+        #endif
+
         return await Parse(stream, cancellationToken);
     }
 
