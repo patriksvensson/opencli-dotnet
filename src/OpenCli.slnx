@@ -12,25 +12,11 @@
     <File Path="stylecop.json" />
   </Folder>
   <Folder Name="/Tools/">
-    <Project Path="Tools\OpenCli.Extensions.System.CommandLine.Tests\OpenCli.Extensions.System.CommandLine.Tests.csproj" Type="Classic C#">
-      <Configuration Solution="Debug|x64" Project="Debug|Any CPU" />
-      <Configuration Solution="Debug|x86" Project="Debug|Any CPU" />
-      <Configuration Solution="Release|x64" Project="Release|Any CPU" />
-      <Configuration Solution="Release|x86" Project="Release|Any CPU" />
-    </Project>
-    <Project Path="Tools\OpenCli.Extensions.System.CommandLine\OpenCli.Extensions.System.CommandLine.csproj" Type="Classic C#">
-      <Configuration Solution="Debug|x64" Project="Debug|Any CPU" />
-      <Configuration Solution="Debug|x86" Project="Debug|Any CPU" />
-      <Configuration Solution="Release|x64" Project="Release|Any CPU" />
-      <Configuration Solution="Release|x86" Project="Release|Any CPU" />
-    </Project>
+    <Project Path="Tools/OpenCli.Extensions.Analyzer/OpenCli.Extensions.Analyzer.csproj" Id="a5afb9ac-72d7-4150-ae8a-87df281406d0" />
+    <Project Path="Tools\OpenCli.Extensions.System.CommandLine.Tests\OpenCli.Extensions.System.CommandLine.Tests.csproj" />
+    <Project Path="Tools\OpenCli.Extensions.System.CommandLine\OpenCli.Extensions.System.CommandLine.csproj" />
   </Folder>
-  <Project Path="OpenCli.Sources\OpenCli.Sources.csproj" Type="Classic C#">
-    <Configuration Solution="Debug|x64" Project="Debug|Any CPU" />
-    <Configuration Solution="Debug|x86" Project="Debug|Any CPU" />
-    <Configuration Solution="Release|x64" Project="Release|Any CPU" />
-    <Configuration Solution="Release|x86" Project="Release|Any CPU" />
-  </Project>
+  <Project Path="OpenCli.Sources\OpenCli.Sources.csproj" />
   <Project Path="OpenCli.Tests\OpenCli.Tests.csproj" />
   <Project Path="OpenCli\OpenCli.csproj" />
 </Solution>
