@@ -12,10 +12,13 @@
     <PackageVersion Include="MinVer" PrivateAssets="All" Version="6.0.0" />
     <PackageVersion Include="NJsonSchema" Version="11.4.0" />
     <PackageVersion Include="NuGetizer" Version="1.3.1" />
+    <PackageVersion Include="OpenCli" Version="0.5.0" />
+    <PackageVersion Include="OpenCli.Sources" Version="0.5.0" />
     <PackageVersion Include="Polyfill" Version="8.9.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.13.1" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Spectre.Console" Version="0.50.0" />
+    <PackageVersion Include="Spectre.Console.Cli" Version="0.50.0" />
     <PackageVersion Include="Spectre.Console.Testing" Version="0.50.0" />
     <PackageVersion Include="Spectre.Verify.Extensions" Version="28.16.0" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
