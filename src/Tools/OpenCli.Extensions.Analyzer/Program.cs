@@ -17,6 +17,9 @@ namespace OpenCli.Extensions.Analyzer
             [Description("Path to open-cli spec")]
             [CommandArgument(0, "[spec-path]")]
             public string SpecPath { get; init; } = null!;
+
+            [CommandOption("--configuration")]
+            public string? Configuration { get; init; }
         }
 
         public override int Execute(CommandContext context, Settings settings)
@@ -29,8 +32,8 @@ namespace OpenCli.Extensions.Analyzer
                 return 1;
             }
 
-            // TODO: Support configuration via config file
-            var optionProvider = new OptionProvider();
+            var optionProviderReader = new OptionProviderReader(new IniParser(), settings.Configuration);
+            var optionProvider = optionProviderReader.Read();
 
             // TODO: Support analyzers enabling/disabling
             IReadOnlyCollection<IOpenCliAnalyzer> analyzers =
