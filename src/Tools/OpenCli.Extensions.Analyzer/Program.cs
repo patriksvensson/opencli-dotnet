@@ -35,12 +35,7 @@ namespace OpenCli.Extensions.Analyzer
             var optionProviderReader = new OptionProviderReader(new IniParser(), settings.Configuration);
             var optionProvider = optionProviderReader.Read();
 
-            // TODO: Support analyzers enabling/disabling
-            IReadOnlyCollection<IOpenCliAnalyzer> analyzers =
-            [
-                new TitleWithoutExtensionsAnalyzer(),
-                new CommandNameCaseAnalyzer()
-            ];
+            IReadOnlyCollection<IOpenCliAnalyzer> analyzers = new OpenCliAnalyzerSelector().GetAnalyzers(optionProvider);
             var diagnosticCollector = new DiagnosticCollector();
 
             foreach (var analyzer in analyzers)

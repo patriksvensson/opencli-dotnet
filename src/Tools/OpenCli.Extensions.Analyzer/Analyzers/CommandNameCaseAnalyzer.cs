@@ -4,15 +4,16 @@ namespace OpenCli.Extensions.Analyzer.Analyzers;
 
 public class CommandNameCaseAnalyzer : IOpenCliAnalyzer
 {
-    public const string Id = "OCA0002";
     public const string Message = "Command name {0} does not match preferred case.";
-    public const string PreferredCaseKey = $"opencli_diagnostic.{Id}.preferred_case";
+    public const string PreferredCaseKey = $"opencli_diagnostic.OCA0002.preferred_case";
 
     private const string KebabCase = "kebab-case";
     private const string PascalCase = "pascal-case";
     private const string SnakeCase = "snake-case";
 
     private static readonly NameCaseMatcher DefaultCase = NameCaseMatcher.KebabCase;
+
+    public string Id { get; } = "OCA0002";
 
     public void Analyze(OpenCliAnalyzeContext context)
     {
