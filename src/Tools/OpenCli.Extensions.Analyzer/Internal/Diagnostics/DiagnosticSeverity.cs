@@ -1,6 +1,6 @@
 namespace OpenCli.Extensions.Analyzer;
 
-public enum OpenCliAnalyzerSeverity
+public enum DiagnosticSeverity
 {
     Error,
     Warning,

@@ -1,10 +1,11 @@
+using System.Collections.Immutable;
 using OpenCli.Extensions.Analyzer.Internal;
 
 namespace OpenCli.Extensions.Analyzer.Analyzers;
 
 public class CommandNameCaseAnalyzer : IOpenCliAnalyzer
 {
-    public const string Message = "Command name {0} does not match preferred case.";
+    public const string OCA0002 = "OCA0002";
     public const string PreferredCaseKey = $"opencli_diagnostic.OCA0002.preferred_case";
 
     private const string KebabCase = "kebab-case";
@@ -13,7 +14,13 @@ public class CommandNameCaseAnalyzer : IOpenCliAnalyzer
 
     private static readonly NameCaseMatcher DefaultCase = NameCaseMatcher.KebabCase;
 
-    public string Id { get; } = "OCA0002";
+    public static DiagnosticDescriptor Rule { get; } = new DiagnosticDescriptor(
+        OCA0002,
+        "Use correct naming case for command",
+        "Command name {0} does not match preferred case.",
+        DiagnosticSeverity.Suggestion);
+
+    public ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => [Rule];
 
     public void Analyze(OpenCliAnalyzeContext context)
     {
@@ -29,7 +36,7 @@ public class CommandNameCaseAnalyzer : IOpenCliAnalyzer
     {
         if (!preferredCase.Regex.IsMatch(command.Name))
         {
-            context.DiagnosticCollector.AddDiagnostic(new Diagnostic(Id, string.Format(Message, command.Name)));
+            context.DiagnosticCollector.AddDiagnostic(Diagnostic.Create(Rule, command.Name));
         }
 
         foreach (var openCliCommand in command.Commands)
