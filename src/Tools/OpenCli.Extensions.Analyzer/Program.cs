@@ -54,9 +54,9 @@ namespace OpenCli.Extensions.Analyzer
             return diagnosticCollector.Diagnostics.Count == 0 ? 0 : 1;
         }
 
-        private static OptionProvider LoadConfiguration(Settings settings)
+        private static OpenCliAnalyzerConfig LoadConfiguration(Settings settings)
         {
-            var optionProviderBuilder = new OptionProviderBuilder();
+            var optionProviderBuilder = new OpenCliAnalyzerConfigBuilder();
             if (settings.Configuration is not null)
             {
                 optionProviderBuilder.AddConfigurationFile(settings.Configuration);

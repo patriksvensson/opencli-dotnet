@@ -1,3 +1,3 @@
 namespace OpenCli.Extensions.Analyzer.Internal;
 
-public record OpenCliAnalyzeContext(OpenCliDocument Document, OptionProvider OptionProvider, DiagnosticCollector DiagnosticCollector);
+public record OpenCliAnalyzeContext(OpenCliDocument Document, OpenCliAnalyzerConfig OptionProvider, DiagnosticCollector DiagnosticCollector);

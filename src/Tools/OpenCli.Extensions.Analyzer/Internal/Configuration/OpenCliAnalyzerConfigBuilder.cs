@@ -1,11 +1,11 @@
 namespace OpenCli.Extensions.Analyzer;
 
-public class OptionProviderBuilder()
+public class OpenCliAnalyzerConfigBuilder()
 {
     private readonly IniParser _parser = new IniParser();
     private readonly Dictionary<string, string> _configurations = new Dictionary<string, string>();
 
-    public OptionProviderBuilder AddConfigurationFile(string path)
+    public OpenCliAnalyzerConfigBuilder AddConfigurationFile(string path)
     {
         if (!File.Exists(path))
         {
@@ -23,8 +23,8 @@ public class OptionProviderBuilder()
         return this;
     }
 
-    public OptionProvider Build()
+    public OpenCliAnalyzerConfig Build()
     {
-        return new OptionProvider(_configurations);
+        return new OpenCliAnalyzerConfig(_configurations);
     }
 }

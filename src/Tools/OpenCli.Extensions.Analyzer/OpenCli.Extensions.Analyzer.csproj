@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update=".opencliconfig">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Sample.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

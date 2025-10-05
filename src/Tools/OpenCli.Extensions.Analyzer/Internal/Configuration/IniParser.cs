@@ -26,6 +26,6 @@ public class IniParser
         }
 
         var parts = line.Split('=', 2);
-        return (parts[0], parts[1]);
+        return (parts[0].Trim(), parts[1].Trim());
     }
 }
