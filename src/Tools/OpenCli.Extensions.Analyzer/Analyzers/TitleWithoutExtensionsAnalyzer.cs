@@ -6,7 +6,6 @@ namespace OpenCli.Extensions.Analyzer.Analyzers;
 public class TitleWithoutExtensionsAnalyzer : IOpenCliAnalyzer
 {
     public const string OCA0001 = "OCA0001";
-    public const string Message = "Don't use executable's name as title.";
     public const string ExtensionConfigurationKey = $"opencli_diagnostic.OCA0001.extensions";
     private static readonly IReadOnlyCollection<string> _extensionConfigurationDefault = [".dll", ".exe"];
 

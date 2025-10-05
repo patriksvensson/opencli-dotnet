@@ -8,7 +8,7 @@ public class NamingCaseAnalyzer : IOpenCliAnalyzer
 {
     public const string OCA1000 = "OCA1000";
     public const string OCA1001 = "OCA1001";
-    public const string OCA1002 = "OCA10022";
+    public const string OCA1002 = "OCA1002";
     public const string PreferredCaseKey = $"opencli_diagnostic.preferred_case";
 
     public static DiagnosticDescriptor CommandNamingCaseRule { get; } = new DiagnosticDescriptor(
