@@ -2,6 +2,7 @@ using System.ComponentModel;
 using OpenCli.Extensions.Analyzer;
 using OpenCli.Extensions.Analyzer.Analyzers;
 using OpenCli.Extensions.Analyzer.Internal;
+using OpenCli.Extensions.Analyzer.Internal.Report;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -20,6 +21,9 @@ namespace OpenCli.Extensions.Analyzer
 
             [CommandOption("--configuration")]
             public string? Configuration { get; init; }
+
+            [CommandOption("--report")]
+            public string? ReportPath { get; init; }
         }
 
         public override int Execute(CommandContext context, Settings settings)
@@ -43,12 +47,8 @@ namespace OpenCli.Extensions.Analyzer
                 analyzer.Analyze(new OpenCliAnalyzeContext(openCliParseResult.Document, optionProvider, diagnosticCollector));
             }
 
-            // TODO: Support SARIF output
-            AnsiConsole.WriteLine($"Found {diagnosticCollector.Diagnostics.Count} diagnostics");
-            foreach (var diagnosticCollectorDiagnostic in diagnosticCollector.Diagnostics)
-            {
-                AnsiConsole.WriteLine($"{diagnosticCollectorDiagnostic.Id}: {diagnosticCollectorDiagnostic.Message}");
-            }
+            IReporter reporter = settings.ReportPath is not null ? new JsonReporter(settings.ReportPath) : new TerminalReporter();
+            reporter.Report(diagnosticCollector.Diagnostics);
 
             return diagnosticCollector.Diagnostics.Count == 0 ? 0 : 1;
         }
