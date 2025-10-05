@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="OpenCli" />
+    <PackageReference Include="Sarif.Sdk" />
     <PackageReference Include="Spectre.Console.Cli" />
   </ItemGroup>
 

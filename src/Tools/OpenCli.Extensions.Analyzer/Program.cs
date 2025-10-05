@@ -48,7 +48,7 @@ namespace OpenCli.Extensions.Analyzer
                 diagnostics = diagnostics.Where(d => d.Severity <= settings.Severity).ToList();
             }
 
-            IReporter reporter = settings.ReportPath is not null ? new JsonReporter(settings.ReportPath) : new TerminalReporter();
+            IReporter reporter = settings.ReportPath is not null ? new SarifReporter(settings.ReportPath) : new TerminalReporter();
             reporter.Report(diagnostics);
 
             return diagnosticCollector.Diagnostics.Count == 0 ? 0 : 1;
