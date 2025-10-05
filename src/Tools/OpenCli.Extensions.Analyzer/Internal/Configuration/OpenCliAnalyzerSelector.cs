@@ -10,7 +10,7 @@ public class OpenCliAnalyzerSelector
         IReadOnlyCollection<IOpenCliAnalyzer> analyzers =
             [
                 new TitleWithoutExtensionsAnalyzer(),
-                new CommandNameCaseAnalyzer()
+                new NamingCaseAnalyzer()
             ];
 
         List<IOpenCliAnalyzer> filteredAnalyzers = [];
