@@ -5,7 +5,7 @@ public class OptionProviderBuilder()
     private readonly IniParser _parser = new IniParser();
     private readonly Dictionary<string, string> _configurations = new Dictionary<string, string>();
 
-    public OptionProviderBuilder AddConfiguraitonFile(string path)
+    public OptionProviderBuilder AddConfigurationFile(string path)
     {
         if (!File.Exists(path))
         {

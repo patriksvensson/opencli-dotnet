@@ -59,7 +59,7 @@ namespace OpenCli.Extensions.Analyzer
             var optionProviderBuilder = new OptionProviderBuilder();
             if (settings.Configuration is not null)
             {
-                optionProviderBuilder.AddConfiguraitonFile(settings.Configuration);
+                optionProviderBuilder.AddConfigurationFile(settings.Configuration);
             }
 
             return optionProviderBuilder.Build();

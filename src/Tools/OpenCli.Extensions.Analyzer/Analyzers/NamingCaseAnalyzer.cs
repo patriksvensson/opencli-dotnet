@@ -31,7 +31,6 @@ public class NamingCaseAnalyzer : IOpenCliAnalyzer
 
     public void Analyze(OpenCliAnalyzeContext context)
     {
-        // TODO: Options and arguments can start with '-' and '--'. Need to handle this
         var option = context.OptionProvider.GetOption(PreferredCaseKey);
         var preferredCase = option is null ? NameCaseMatcher.DefaultCase : NameCaseMatcher.Parse(option);
         var visitor = new CommandNameAnalyzerVisitor(preferredCase, context.DiagnosticCollector);
@@ -42,7 +41,7 @@ public class NamingCaseAnalyzer : IOpenCliAnalyzer
     {
         protected override void Visit(OpenCliCommand command)
         {
-            if (!preferredCase.Regex.IsMatch(command.Name))
+            if (!IsValid(command.Name))
             {
                 diagnosticCollector.AddDiagnostic(Diagnostic.Create(CommandNamingCaseRule, command.Name));
             }
@@ -52,7 +51,7 @@ public class NamingCaseAnalyzer : IOpenCliAnalyzer
 
         protected override void Visit(OpenCliArgument argument)
         {
-            if (!preferredCase.Regex.IsMatch(argument.Name))
+            if (!IsValid(argument.Name))
             {
                 diagnosticCollector.AddDiagnostic(Diagnostic.Create(ArgumentNamingCaseRule, argument.Name));
             }
@@ -62,12 +61,19 @@ public class NamingCaseAnalyzer : IOpenCliAnalyzer
 
         protected override void Visit(OpenCliOption option)
         {
-            if (!preferredCase.Regex.IsMatch(option.Name))
+            if (!IsValid(option.Name))
             {
                 diagnosticCollector.AddDiagnostic(Diagnostic.Create(OptionNamingCaseRule, option.Name));
             }
 
             base.Visit(option);
+        }
+
+        private bool IsValid(string value)
+        {
+            // Remove '-' and '--' from args and parameters
+            value = value.TrimStart('-');
+            return preferredCase.Regex.IsMatch(value);
         }
     }
 }
