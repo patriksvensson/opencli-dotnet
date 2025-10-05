@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using OpenCli.Extensions.Analyzer;
-using OpenCli.Extensions.Analyzer.Analyzers;
 using OpenCli.Extensions.Analyzer.Internal;
 using OpenCli.Extensions.Analyzer.Internal.Report;
 using Spectre.Console;
@@ -24,6 +23,9 @@ namespace OpenCli.Extensions.Analyzer
 
             [CommandOption("--report")]
             public string? ReportPath { get; init; }
+
+            [CommandOption("--severity")]
+            public DiagnosticSeverity? Severity { get; init; }
         }
 
         public override int Execute(CommandContext context, Settings settings)
@@ -36,21 +38,31 @@ namespace OpenCli.Extensions.Analyzer
                 return 1;
             }
 
-            var optionProviderReader = new OptionProviderReader(new IniParser(), settings.Configuration);
-            var optionProvider = optionProviderReader.Read();
+            var optionProvider = LoadConfiguration(settings);
+            var processor = new OpenCliAnalyzerProcessor(optionProvider);
+            var diagnosticCollector = processor.Process(openCliParseResult.Document);
 
-            IReadOnlyCollection<IOpenCliAnalyzer> analyzers = new OpenCliAnalyzerSelector().GetAnalyzers(optionProvider);
-            var diagnosticCollector = new DiagnosticCollector();
-
-            foreach (var analyzer in analyzers)
+            var diagnostics = diagnosticCollector.Diagnostics;
+            if (settings.Severity is not null)
             {
-                analyzer.Analyze(new OpenCliAnalyzeContext(openCliParseResult.Document, optionProvider, diagnosticCollector));
+                diagnostics = diagnostics.Where(d => d.Severity <= settings.Severity).ToList();
             }
 
             IReporter reporter = settings.ReportPath is not null ? new JsonReporter(settings.ReportPath) : new TerminalReporter();
-            reporter.Report(diagnosticCollector.Diagnostics);
+            reporter.Report(diagnostics);
 
             return diagnosticCollector.Diagnostics.Count == 0 ? 0 : 1;
+        }
+
+        private static OptionProvider LoadConfiguration(Settings settings)
+        {
+            var optionProviderBuilder = new OptionProviderBuilder();
+            if (settings.Configuration is not null)
+            {
+                optionProviderBuilder.AddConfiguraitonFile(settings.Configuration);
+            }
+
+            return optionProviderBuilder.Build();
         }
     }
 }
