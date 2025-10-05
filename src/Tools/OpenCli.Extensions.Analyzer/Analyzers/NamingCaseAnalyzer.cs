@@ -31,6 +31,7 @@ public class NamingCaseAnalyzer : IOpenCliAnalyzer
 
     public void Analyze(OpenCliAnalyzeContext context)
     {
+        // TODO: Options and arguments can start with '-' and '--'. Need to handle this
         var option = context.OptionProvider.GetOption(PreferredCaseKey);
         var preferredCase = option is null ? NameCaseMatcher.DefaultCase : NameCaseMatcher.Parse(option);
         var visitor = new CommandNameAnalyzerVisitor(preferredCase, context.DiagnosticCollector);
