@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup Label="Settings">
-    <LangVersion>13</LangVersion>
+    <LangVersion>14</LangVersion>
     <ImplicitUsings>true</ImplicitUsings>
     <Deterministic>true</Deterministic>
     <Nullable>enable</Nullable>

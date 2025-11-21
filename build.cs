@@ -1,3 +1,5 @@
+#:sdk Cake.Sdk@6.0.0
+
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 
@@ -48,7 +50,7 @@ Task("Publish-NuGet")
     .IsDependentOn("Package")
     .Does(context => 
 {
-    var apiKey = Argument<string>("nuget-key", null);
+    var apiKey = Argument<string?>("nuget-key", null);
     if(string.IsNullOrWhiteSpace(apiKey)) {
         throw new CakeException("No NuGet API key was provided.");
     }
