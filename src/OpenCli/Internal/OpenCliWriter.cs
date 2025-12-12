@@ -5,18 +5,11 @@
 #endif
 
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace OpenCli.Internal;
 
 internal static class OpenCliWriter
 {
-    private static readonly JsonSerializerOptions _options = new JsonSerializerOptions
-    {
-        WriteIndented = true,
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-    };
-
     public static string Write(OpenCliDocument document)
     {
         if (document == null)
@@ -26,7 +19,7 @@ internal static class OpenCliWriter
 
         return JsonSerializer.Serialize(
             OpenCliMapper.Map(document),
-            _options);
+            OpenCliJsonContext.Default.DocumentJson);
     }
 
     public static void Write(Stream stream, OpenCliDocument document)
@@ -39,6 +32,6 @@ internal static class OpenCliWriter
         JsonSerializer.Serialize(
             stream,
             OpenCliMapper.Map(document),
-            _options);
+            OpenCliJsonContext.Default.DocumentJson);
     }
 }
