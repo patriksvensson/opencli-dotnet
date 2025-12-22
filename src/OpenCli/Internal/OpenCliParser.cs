@@ -498,16 +498,9 @@ internal static class OpenCliParser
     {
         try
         {
-#pragma warning disable IL2026
-#pragma warning disable IL3050
-            // TODO: Remove pragma
-            var jsonDocument = JsonSerializer.Deserialize<JsonModel.DocumentJson>(
-                json, new JsonSerializerOptions
-                {
-                    AllowTrailingCommas = true,
-                });
-#pragma warning restore IL3050
-#pragma warning restore IL2026
+            var jsonDocument = JsonSerializer.Deserialize(
+                json,
+                OpenCliJsonContext.Default.DocumentJson);
             return jsonDocument;
         }
         catch
