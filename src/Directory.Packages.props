@@ -8,15 +8,13 @@
     <PackageVersion Include="Meziantou.Analyzer" Version="2.0.161" />
     <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
-    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.201" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
     <PackageVersion Include="MinVer" PrivateAssets="All" Version="7.0.0" />
     <PackageVersion Include="NJsonSchema" Version="11.5.2" />
     <PackageVersion Include="NuGetizer" Version="1.4.7" />
-    <PackageVersion Include="Polyfill" Version="9.24.0" />
+    <PackageVersion Include="Polyfill" Version="8.9.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.15.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
-    <PackageVersion Include="Spectre.Console" Version="0.50.0" />
-    <PackageVersion Include="Spectre.Console.Testing" Version="0.50.0" />
     <PackageVersion Include="Spectre.Verify.Extensions" Version="28.16.0" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
     <PackageVersion Include="System.CommandLine" Version="2.0.5" />
