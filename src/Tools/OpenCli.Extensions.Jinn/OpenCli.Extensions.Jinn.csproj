@@ -26,4 +26,10 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="..\..\BannedSymbols.txt">
+      <Link>Properties\BannedSymbols.txt</Link>
+    </Content>
+  </ItemGroup>
+
 </Project>

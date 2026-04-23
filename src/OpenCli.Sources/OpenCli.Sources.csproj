@@ -25,6 +25,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\Annotations.cs">
+      <Link>Properties\Annotations.cs</Link>
+    </Compile>
     <Compile Include="..\OpenCli\**\*.cs" Exclude="..\OpenCli\obj\**\*" Link="External\OpenCli\%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
 

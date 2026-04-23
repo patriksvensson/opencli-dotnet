@@ -24,4 +24,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\Annotations.cs">
+      <Link>Properties\Annotations.cs</Link>
+    </Compile>
+  </ItemGroup>
+
 </Project>

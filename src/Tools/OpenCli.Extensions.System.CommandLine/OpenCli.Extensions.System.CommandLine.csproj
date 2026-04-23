@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" Link="Properties/stylecop.json" />
-    <Additionalfiles Include="Properties/BannedSymbols.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +24,12 @@
     <Compile Include="..\..\Annotations.cs">
       <Link>Properties\Annotations.cs</Link>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\BannedSymbols.txt">
+      <Link>Properties\BannedSymbols.txt</Link>
+    </Content>
   </ItemGroup>
 
 </Project>
