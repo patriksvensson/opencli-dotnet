@@ -9,7 +9,7 @@ internal sealed class OpenCliOption : Option
     {
         Handler = ctx =>
         {
-            writer ??= ((_, json) => Console.Write(json));
+            writer ??= (_, json) => Console.Write(json);
             writer(ctx, OpenCliGenerator.Generate(
                 settings ?? new OpenCliSettings(),
                 ctx.ParseResult));
