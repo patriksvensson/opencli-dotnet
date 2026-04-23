@@ -1,9 +1,10 @@
-namespace System.CommandLine.OpenCli.Tests;
+using Shouldly;
 
-public sealed class OpenCliTests
+namespace Jinn.OpenCli.Tests;
+
+public class OpenCliTests
 {
     [Fact]
-    [Expectation("Generated")]
     public async Task Should_Generate_OpenCli()
     {
         // Given
@@ -26,11 +27,11 @@ public sealed class OpenCliTests
                 Description = "The age of the person to greet",
             });
 
-            root.Subcommands.Add(greetCommand);
+            root.Commands.Add(greetCommand);
         });
 
         // When
-        var (exitCode, output) = fixture.Run(
+        var (exitCode, output) = await fixture.Run(
             settings: new OpenCliSettings
             {
                 Title = "MyApp",

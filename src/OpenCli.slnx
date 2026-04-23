@@ -12,20 +12,22 @@
     <File Path="stylecop.json" />
   </Folder>
   <Folder Name="/Tools/">
-    <Project Path="Tools\OpenCli.Extensions.System.CommandLine.Tests\OpenCli.Extensions.System.CommandLine.Tests.csproj" Type="Classic C#">
+    <Project Path="Tools\OpenCli.Extensions.Jinn.Tests\OpenCli.Extensions.Jinn.Tests.csproj" />
+    <Project Path="Tools\OpenCli.Extensions.Jinn\OpenCli.Extensions.Jinn.csproj" />
+    <Project Path="Tools\OpenCli.Extensions.System.CommandLine.Tests\OpenCli.Extensions.System.CommandLine.Tests.csproj" Type="C#">
       <Configuration Solution="Debug|x64" Project="Debug|Any CPU" />
       <Configuration Solution="Debug|x86" Project="Debug|Any CPU" />
       <Configuration Solution="Release|x64" Project="Release|Any CPU" />
       <Configuration Solution="Release|x86" Project="Release|Any CPU" />
     </Project>
-    <Project Path="Tools\OpenCli.Extensions.System.CommandLine\OpenCli.Extensions.System.CommandLine.csproj" Type="Classic C#">
+    <Project Path="Tools\OpenCli.Extensions.System.CommandLine\OpenCli.Extensions.System.CommandLine.csproj" Type="C#">
       <Configuration Solution="Debug|x64" Project="Debug|Any CPU" />
       <Configuration Solution="Debug|x86" Project="Debug|Any CPU" />
       <Configuration Solution="Release|x64" Project="Release|Any CPU" />
       <Configuration Solution="Release|x86" Project="Release|Any CPU" />
     </Project>
   </Folder>
-  <Project Path="OpenCli.Sources\OpenCli.Sources.csproj" Type="Classic C#">
+  <Project Path="OpenCli.Sources\OpenCli.Sources.csproj" Type="C#">
     <Configuration Solution="Debug|x64" Project="Debug|Any CPU" />
     <Configuration Solution="Debug|x86" Project="Debug|Any CPU" />
     <Configuration Solution="Release|x64" Project="Release|Any CPU" />

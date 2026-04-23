@@ -1,0 +1,91 @@
+﻿{
+  "opencli": "draft",
+  "info": {
+    "title": "MyApp",
+    "version": "1.2.3"
+  },
+  "arguments": [
+    {
+      "name": "COUNT",
+      "arity": {
+        "minimum": 1,
+        "maximum": 1
+      },
+      "description": "The number of greetings",
+      "metadata": [
+        {
+          "name": "ClrType",
+          "value": "System.Int32"
+        }
+      ]
+    }
+  ],
+  "options": [
+    {
+      "name": "--opencli",
+      "aliases": [
+        "--opencli"
+      ]
+    },
+    {
+      "name": "-h",
+      "aliases": [
+        "--help",
+        "-h"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "name": "greet",
+      "options": [
+        {
+          "name": "--age",
+          "aliases": [
+            "--age"
+          ],
+          "arguments": [
+            {
+              "name": "--age",
+              "arity": {
+                "minimum": 1,
+                "maximum": 1
+              },
+              "metadata": [
+                {
+                  "name": "ClrType",
+                  "value": "System.Int32"
+                }
+              ]
+            }
+          ],
+          "description": "The age of the person to greet"
+        },
+        {
+          "name": "-h",
+          "aliases": [
+            "--help",
+            "-h"
+          ]
+        }
+      ],
+      "arguments": [
+        {
+          "name": "NAME",
+          "arity": {
+            "minimum": 1,
+            "maximum": 1
+          },
+          "description": "The name of the person to greet",
+          "metadata": [
+            {
+              "name": "ClrType",
+              "value": "System.String"
+            }
+          ]
+        }
+      ],
+      "examples": []
+    }
+  ]
+}

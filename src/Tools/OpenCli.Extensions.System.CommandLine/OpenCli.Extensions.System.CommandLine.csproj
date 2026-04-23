@@ -4,7 +4,6 @@
     <TargetFrameworks>net10.0;net9.0;net8.0;netstandard2.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <PackageId>OpenCli.Extensions.System.CommandLine</PackageId>
-    <RootNamespace>System.CommandLine.OpenCli</RootNamespace>
     <NoWarn>$(NoWarn);NU5104</NoWarn>
     <Description>OpenCLI integration for System.CommandLine</Description>
   </PropertyGroup>
@@ -20,6 +19,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\OpenCli\OpenCli.csproj" PrivateAssets="compile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Annotations.cs">
+      <Link>Properties\Annotations.cs</Link>
+    </Compile>
   </ItemGroup>
 
 </Project>

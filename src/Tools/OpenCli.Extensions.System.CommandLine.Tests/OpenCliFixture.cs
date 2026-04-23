@@ -1,4 +1,4 @@
-namespace System.CommandLine.OpenCli.Tests.Fixtures;
+namespace System.CommandLine.OpenCli.Tests;
 
 public sealed class OpenCliFixture(Action<RootCommand> config)
 {
