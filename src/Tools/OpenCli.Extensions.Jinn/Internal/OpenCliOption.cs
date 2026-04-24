@@ -7,7 +7,7 @@ internal sealed class OpenCliOption : Option
         Action<InvocationContext, string>? writer = null)
         : base("--opencli", new Argument<bool>("value"))
     {
-        Handler = ctx =>
+        Handler = (ctx, _) =>
         {
             writer ??= (_, json) => Console.Write(json);
             writer(ctx, OpenCliGenerator.Generate(
