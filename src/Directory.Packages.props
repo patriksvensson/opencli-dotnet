@@ -7,21 +7,21 @@
     <PackageVersion Include="Errata" Version="0.14.0" />
     <PackageVersion Include="Jinn" Version="0.8.0" />
     <PackageVersion Include="Meziantou.Analyzer" Version="2.0.161" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
-    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
-    <PackageVersion Include="MinVer" PrivateAssets="All" Version="7.0.0" />
-    <PackageVersion Include="NJsonSchema" Version="11.5.2" />
-    <PackageVersion Include="NuGetizer" Version="1.4.7" />
-    <PackageVersion Include="Polyfill" Version="8.9.0" />
-    <PackageVersion Include="Roslynator.Analyzers" Version="4.15.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="5.6.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="10.0.401" />
+    <PackageVersion Include="MinVer" PrivateAssets="All" Version="8.0.0" />
+    <PackageVersion Include="NJsonSchema" Version="11.6.1" />
+    <PackageVersion Include="NuGetizer" Version="1.5.1" />
+    <PackageVersion Include="Polyfill" Version="11.4.1" />
+    <PackageVersion Include="Roslynator.Analyzers" Version="5.0.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Spectre.Verify.Extensions" Version="28.16.0" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
-    <PackageVersion Include="System.CommandLine" Version="2.0.5" />
+    <PackageVersion Include="System.CommandLine" Version="2.0.12" />
     <PackageVersion Include="Verify" Version="29.2.0" />
     <PackageVersion Include="Verify.Xunit" Version="31.12.5" />
     <PackageVersion Include="xunit" Version="2.9.3" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.0" />
   </ItemGroup>
 </Project>

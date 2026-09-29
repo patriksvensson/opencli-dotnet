@@ -12,14 +12,12 @@ internal sealed class OpenCliGenerator
         var document = new OpenCliDocument
         {
             OpenCli = "draft",
+            Command = CreateCommand(parseResult.CommandResult.Command),
             Info = new OpenCliInfo
             {
                 Title = settings.Title ?? RootCommand.ExecutableName,
                 Version = settings.Version ?? ExecutableVersion.GetExecutableVersion(),
             },
-            Commands = CreateCommands(parseResult.CommandResult.Command.Subcommands),
-            Arguments = CreateArguments(parseResult.CommandResult.Command.Arguments),
-            Options = CreateOptions(parseResult.CommandResult.Command.Options),
         };
 
         return document.Write();
@@ -31,19 +29,26 @@ internal sealed class OpenCliGenerator
 
         foreach (var command in commands.OrderBy(o => o.Name, StringComparer.OrdinalIgnoreCase))
         {
-            result.Add(new OpenCliCommand
-            {
-                Name = command.Name,
-                Aliases = [..command.Aliases.OrderBy(str => str)],
-                Commands = CreateCommands(command.Subcommands),
-                Arguments = CreateArguments(command.Arguments),
-                Options = CreateOptions(command.Options),
-                Description = command.Description,
-                Hidden = command.Hidden ? true : null,
-            });
+            result.Add(CreateCommand(command));
         }
 
         return result;
+    }
+
+    private static OpenCliCommand CreateCommand(Command command)
+    {
+        return new OpenCliCommand
+        {
+            Name = command.Name,
+            Aliases = [..command.Aliases.OrderBy(str => str)],
+            Commands = CreateCommands(command.Subcommands),
+            Arguments = CreateArguments(command.Arguments),
+            Options = CreateOptions(command.Options),
+
+            // RootCommand defaults to an empty description
+            Description = string.IsNullOrWhiteSpace(command.Description) ? null : command.Description,
+            Hidden = command.Hidden ? true : null,
+        };
     }
 
     private static List<OpenCliArgument> CreateArguments(IList<Argument> arguments)

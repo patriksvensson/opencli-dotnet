@@ -13,15 +13,9 @@ internal static class OpenCliMapper
         return new JsonModel.DocumentJson
         {
             OpenCli = model.OpenCli,
+            Command = MapOptional(model.Command, MapCommand),
             Info = MapOptional(model.Info, MapInfo),
             Conventions = MapOptional(model.Conventions, MapConventions),
-            Arguments = MapList(model.Arguments, MapArgument),
-            Options = MapList(model.Options, MapOption),
-            Commands = MapList(model.Commands, MapCommand),
-            ExitCodes = MapList(model.ExitCodes, MapExitCode),
-            Examples = MapList(model.Examples),
-            Interactive = model.Interactive,
-            Metadata = MapList(model.Metadata, MapMetadata),
         };
     }
 
@@ -43,7 +37,7 @@ internal static class OpenCliMapper
         return new JsonModel.ConventionsJson
         {
             GroupOptions = model.GroupOptions,
-            OptionArgumentSeparator = model.OptionArgumentSeparator,
+            OptionSeparator = model.OptionSeparator,
         };
     }
 
@@ -90,7 +84,7 @@ internal static class OpenCliMapper
             ExitCodes = MapList(model.ExitCodes, MapExitCode),
             Description = model.Description,
             Hidden = model.Hidden,
-            Examples = model.Examples,
+            Examples = MapList(model.Examples),
             Interactive = model.Interactive,
             Metadata = MapList(model.Metadata, MapMetadata),
         };
@@ -130,6 +124,7 @@ internal static class OpenCliMapper
         {
             Name = model.Name,
             Identifier = model.Identifier,
+            Url = model.Url,
         };
     }
 

@@ -15,32 +15,14 @@ internal static class JsonModel
         [JsonPropertyName("opencli")]
         public string? OpenCli { get; set; }
 
+        [JsonPropertyName("command")]
+        public CommandJson? Command { get; set; }
+
         [JsonPropertyName("info")]
         public InfoJson? Info { get; set; }
 
         [JsonPropertyName("conventions")]
         public ConventionsJson? Conventions { get; set; }
-
-        [JsonPropertyName("arguments")]
-        public List<ArgumentJson>? Arguments { get; set; }
-
-        [JsonPropertyName("options")]
-        public List<OptionJson>? Options { get; set; }
-
-        [JsonPropertyName("commands")]
-        public List<CommandJson>? Commands { get; set; }
-
-        [JsonPropertyName("exitCodes")]
-        public List<ExitCodeJson>? ExitCodes { get; set; }
-
-        [JsonPropertyName("examples")]
-        public List<string>? Examples { get; set; }
-
-        [JsonPropertyName("interactive")]
-        public bool? Interactive { get; set; }
-
-        [JsonPropertyName("metadata")]
-        public List<MetadataJson>? Metadata { get; set; }
     }
 
     public sealed class InfoJson
@@ -83,6 +65,9 @@ internal static class JsonModel
 
         [JsonPropertyName("identifier")]
         public string? Identifier { get; set; }
+
+        [JsonPropertyName("url")]
+        public string? Url { get; set; }
     }
 
     public sealed class ConventionsJson
@@ -90,8 +75,8 @@ internal static class JsonModel
         [JsonPropertyName("groupOptions")]
         public bool? GroupOptions { get; set; }
 
-        [JsonPropertyName("optionArgumentSeparator")]
-        public string? OptionArgumentSeparator { get; set; }
+        [JsonPropertyName("optionSeparator")]
+        public string? OptionSeparator { get; set; }
     }
 
     public sealed class CommandJson

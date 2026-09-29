@@ -38,6 +38,8 @@ public sealed class OpenCliTests
             });
 
         // Then
-        await Verify(output, extension: "json");
+        await Verify(output, extension: "json")
+            .AddScrubber(builder => builder.Replace(
+                $"\"{RootCommand.ExecutableName}\"", "\"{ExecutableName}\""));
     }
 }

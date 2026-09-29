@@ -13,14 +13,8 @@ internal static class JsonMapper
         return new OpenCliDocument
         {
             OpenCli = json.OpenCli!,
+            Command = MapCommand(json.Command ?? throw new InvalidOperationException("OpenCLI root command is missing")),
             Info = MapInfo(json.Info),
-            Interactive = json.Interactive,
-            Metadata = MapList(json.Metadata, MapMetadata),
-            Commands = MapList(json.Commands, MapCommand),
-            ExitCodes = MapList(json.ExitCodes, MapExitCode),
-            Examples = json.Examples ?? [],
-            Arguments = MapList(json.Arguments, MapArgument),
-            Options = MapList(json.Options, MapOption),
             Conventions = MapOptional(json.Conventions, MapConventions),
         };
     }
@@ -68,6 +62,7 @@ internal static class JsonMapper
         {
             Name = json.Name,
             Identifier = json.Identifier,
+            Url = json.Url,
         };
     }
 
@@ -76,7 +71,7 @@ internal static class JsonMapper
         return new OpenCliConventions
         {
             GroupOptions = json.GroupOptions,
-            OptionArgumentSeparator = json.OptionArgumentSeparator,
+            OptionSeparator = json.OptionSeparator,
         };
     }
 

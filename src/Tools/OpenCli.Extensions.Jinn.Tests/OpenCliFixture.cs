@@ -10,7 +10,7 @@ public sealed class OpenCliFixture(Action<RootCommand> config)
         OpenCliSettings? settings = null)
     {
         var output = new StringWriter();
-        var command = new RootCommand();
+        var command = new RootCommand(new Configuration { ExecutableName = "myapp" });
 
         command.AddOpenCli(settings, (_, json) => output.Write(json));
         _config(command);

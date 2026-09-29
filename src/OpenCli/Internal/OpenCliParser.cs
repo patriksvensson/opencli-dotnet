@@ -25,6 +25,10 @@ internal static class OpenCliParser
                     "type": "string",
                     "description": "The OpenCLI version number"
                 },
+                "command": {
+                    "$ref": "#/definitions/Command",
+                    "description": "The root command"
+                },
                 "info": {
                     "$ref": "#/definitions/CliInfo",
                     "description": "Information about the CLI"
@@ -32,211 +36,15 @@ internal static class OpenCliParser
                 "conventions": {
                     "$ref": "#/definitions/Conventions",
                     "description": "The conventions used by the CLI"
-                },
-                "arguments": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Argument"
-                    },
-                    "description": "Root command arguments"
-                },
-                "options": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Option"
-                    },
-                    "description": "Root command options"
-                },
-                "commands": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Command"
-                    },
-                    "description": "Root command sub commands"
-                },
-                "exitCodes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ExitCode"
-                    },
-                    "description": "Root command exit codes"
-                },
-                "examples": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Examples of how to use the CLI"
-                },
-                "interactive": {
-                    "type": "boolean",
-                    "description": "Indicates whether or not the command requires interactive input"
-                },
-                "metadata": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/Metadata"
-                    },
-                    "description": "Custom metadata"
                 }
             },
             "required": [
                 "opencli",
+                "command",
                 "info"
             ],
             "description": "The OpenCLI description",
             "definitions": {
-                "CliInfo": {
-                    "type": "object",
-                    "properties": {
-                        "title": {
-                            "type": "string",
-                            "description": "The application title"
-                        },
-                        "summary": {
-                            "type": "string",
-                            "description": "A short summary of the application"
-                        },
-                        "description": {
-                            "type": "string",
-                            "description": "A description of the application"
-                        },
-                        "contact": {
-                            "$ref": "#/definitions/Contact",
-                            "description": "The contact information"
-                        },
-                        "license": {
-                            "$ref": "#/definitions/License",
-                            "description": "The application license"
-                        },
-                        "version": {
-                            "type": "string",
-                            "description": "The application version"
-                        }
-                    },
-                    "required": [
-                        "title",
-                        "version"
-                    ]
-                },
-                "Conventions": {
-                    "type": "object",
-                    "properties": {
-                        "groupOptions": {
-                            "type": "boolean",
-                            "default": true,
-                            "description": "Whether or not grouping of short options are allowed"
-                        },
-                        "optionSeparator": {
-                            "type": "string",
-                            "default": " ",
-                            "description": "The option argument separator"
-                        }
-                    }
-                },
-                "Argument": {
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "description": "The argument name"
-                        },
-                        "required": {
-                            "type": "boolean",
-                            "description": "Whether or not the argument is required"
-                        },
-                        "arity": {
-                            "$ref": "#/definitions/Arity",
-                            "description": "The argument arity. Arity defines the minimum and maximum number of argument values"
-                        },
-                        "acceptedValues": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            },
-                            "description": "A list of accepted values"
-                        },
-                        "group": {
-                            "type": "string",
-                            "description": "The argument group"
-                        },
-                        "description": {
-                            "type": "string",
-                            "description": "The argument description"
-                        },
-                        "hidden": {
-                            "type": "boolean",
-                            "default": false,
-                            "description": "Whether or not the argument is hidden"
-                        },
-                        "metadata": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Metadata"
-                            },
-                            "description": "Custom metadata"
-                        }
-                    },
-                    "required": [
-                        "name"
-                    ]
-                },
-                "Option": {
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "description": "The option name"
-                        },
-                        "required": {
-                            "type": "boolean",
-                            "description": "Whether or not the option is required"
-                        },
-                        "aliases": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            },
-                            "uniqueItems": true,
-                            "description": "The option's aliases"
-                        },
-                        "arguments": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Argument"
-                            },
-                            "description": "The option's arguments"
-                        },
-                        "group": {
-                            "type": "string",
-                            "description": "The option group"
-                        },
-                        "description": {
-                            "type": "string",
-                            "description": "The option description"
-                        },
-                        "recursive": {
-                            "type": "boolean",
-                            "default": false,
-                            "description": "Specifies whether the option is accessible from the immediate parent command and, recursively, from its subcommands"
-                        },
-                        "hidden": {
-                            "type": "boolean",
-                            "default": false,
-                            "description": "Whether or not the option is hidden"
-                        },
-                        "metadata": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/Metadata"
-                            },
-                            "description": "Custom metadata"
-                        }
-                    },
-                    "required": [
-                        "name"
-                    ]
-                },
                 "Command": {
                     "type": "object",
                     "properties": {
@@ -298,7 +106,165 @@ internal static class OpenCliParser
                         },
                         "interactive": {
                             "type": "boolean",
+                            "default": false,
                             "description": "Indicate whether or not the command requires interactive input"
+                        },
+                        "metadata": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Metadata"
+                            },
+                            "description": "Custom metadata"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ]
+                },
+                "CliInfo": {
+                    "type": "object",
+                    "properties": {
+                        "title": {
+                            "type": "string",
+                            "description": "The application title"
+                        },
+                        "summary": {
+                            "type": "string",
+                            "description": "A short summary of the application"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "A description of the application"
+                        },
+                        "contact": {
+                            "$ref": "#/definitions/Contact",
+                            "description": "The contact information"
+                        },
+                        "license": {
+                            "$ref": "#/definitions/License",
+                            "description": "The application license"
+                        },
+                        "version": {
+                            "type": "string",
+                            "description": "The application version"
+                        }
+                    },
+                    "required": [
+                        "title",
+                        "version"
+                    ]
+                },
+                "Conventions": {
+                    "type": "object",
+                    "properties": {
+                        "groupOptions": {
+                            "type": "boolean",
+                            "default": true,
+                            "description": "Whether or not grouping of short options are allowed"
+                        },
+                        "optionSeparator": {
+                            "type": "string",
+                            "default": " ",
+                            "description": "The option argument separator"
+                        }
+                    }
+                },
+                "Option": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "The option name"
+                        },
+                        "required": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Whether or not the option is required"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "uniqueItems": true,
+                            "description": "The option's aliases"
+                        },
+                        "arguments": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Argument"
+                            },
+                            "description": "The option's arguments"
+                        },
+                        "group": {
+                            "type": "string",
+                            "description": "The option group"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "The option description"
+                        },
+                        "recursive": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Specifies whether the option is accessible from the immediate parent command and, recursively, from its subcommands"
+                        },
+                        "hidden": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Whether or not the option is hidden"
+                        },
+                        "metadata": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Metadata"
+                            },
+                            "description": "Custom metadata"
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ]
+                },
+                "Argument": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "The argument name"
+                        },
+                        "required": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Whether or not the argument is required"
+                        },
+                        "arity": {
+                            "$ref": "#/definitions/Arity",
+                            "default": {
+                                "minimum": 1,
+                                "maximum": 1
+                            },
+                            "description": "The argument arity. Arity defines the minimum and maximum number of argument values"
+                        },
+                        "acceptedValues": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "description": "A list of accepted values"
+                        },
+                        "group": {
+                            "type": "string",
+                            "description": "The argument group"
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "The argument description"
+                        },
+                        "hidden": {
+                            "type": "boolean",
+                            "default": false,
+                            "description": "Whether or not the argument is hidden"
                         },
                         "metadata": {
                             "type": "array",
@@ -369,6 +335,10 @@ internal static class OpenCliParser
                         "identifier": {
                             "type": "string",
                             "description": "The SPDX license identifier"
+                        },
+                        "url": {
+                            "type": "string",
+                            "description": "The URI for the license. This MUST be in the form of a URI"
                         }
                     }
                 },
@@ -377,11 +347,13 @@ internal static class OpenCliParser
                     "properties": {
                         "minimum": {
                             "type": "integer",
+                            "default": 1,
                             "minimum": 0,
                             "description": "The minimum number of values allowed"
                         },
                         "maximum": {
                             "type": "integer",
+                            "default": 1,
                             "minimum": 0,
                             "description": "The maximum number of values allowed"
                         }
